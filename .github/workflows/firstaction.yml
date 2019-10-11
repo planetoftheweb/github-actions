@@ -7,16 +7,25 @@ on:
   pull_request:
     types: [closed]
 
+env: 
+  name: Raybo
 jobs:
   build:
 
     runs-on: ubuntu-latest
-    
+    env:
+      name: Ray
     steps:
-    - uses: actions/checkout@v1
     - name: Run a one-line script
-      run: echo Hello, world!
+      run: echo Hello $name!
+
+  pull_requests_only:
+
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    needs: build
+    steps:
     - name: Run a multi-line script
       run: |
         echo Add other actions to build,
-        echo test, and deploy your project.
+        echo Hi, $name.
