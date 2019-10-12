@@ -4,7 +4,7 @@
   "description": "Bootstrap 4 Layouts",
   "author": "Ray Villalobos",
   "scripts": {
-    "start": "gulp"
+    "start": "gulp",
     "build": "gulp build"
   },
   "devDependencies": {
