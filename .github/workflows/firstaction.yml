@@ -21,7 +21,17 @@ jobs:
         echo Hello $name!
         echo Actor: ${{ github.actor }}
         echo Committed By:: ${{ github.event.commits[0].author.name }}
-  
+  weather:
+    runs-on: ubuntu-latest
+    env:
+      location: '28.550,-81.40'
+      lang: en
+      units: us
+      exclude: 'minutely,hourly,daily,alerts,flags'
+      dark_sky_secret: ${{ secrets.dark_sky }}
+    steps:
+      - name: Current Weather
+        run: curl -s --url https://api.darksky.net/forecast/$dark_sky_secret/$location?lang=$lang&units=$units&exclude=$exclude
   dump:
     runs-on: ubuntu-latest
     steps:
