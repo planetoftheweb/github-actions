@@ -13,14 +13,23 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    env:
-      name: Ray V
+    name: Build Project
     steps:
-    - name: Run a one-line script
-      run: | 
-        echo Hello $name!
-        echo Actor: ${{ github.actor }}
-        echo Committed By:: ${{ github.event.commits[0].author.name }}
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - name: install
+      run: npm install
+    - name: build
+      run: npm run build
+    - name: deploy
+      uses: demurgos/ga-deploy-git@v1
+      with:
+        accessToken: ${{ secrets.access_token }}
+        srcDir: build
+        destBranch: gh-pages 
+       
   weather:
     runs-on: ubuntu-latest
     env:
