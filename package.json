@@ -5,6 +5,7 @@
   "author": "Ray Villalobos",
   "scripts": {
     "start": "gulp"
+    "build": "gulp build"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
